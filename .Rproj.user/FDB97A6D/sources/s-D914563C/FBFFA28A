@@ -1,0 +1,27 @@
+{
+    "id": "FBFFA28A",
+    "path": "~/GitHub/Einfuehrung_in_R/01_Einfuehrung_in_R.Rmd",
+    "project_path": "01_Einfuehrung_in_R.Rmd",
+    "type": "r_markdown",
+    "hash": "1407894766",
+    "contents": "",
+    "dirty": true,
+    "created": 1626936265515.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "438,3",
+        "scrollLine": "422",
+        "last_setup_crc32": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1626951227,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1626951227824,
+    "read_only": false,
+    "read_only_alternatives": []
+}
