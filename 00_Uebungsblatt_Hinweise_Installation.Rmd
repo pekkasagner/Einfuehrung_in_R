@@ -1,0 +1,35 @@
+---
+title: "Hinweise zur Installation von R und RStudio"
+subtitle:    | 
+    | Datenanalyse und -visualisierung mit R
+    | Hochschule Bonn-Rhein-Sieg
+author: "Pekka Sagner M.Sc."
+date: "8. Oktober 2021"
+output: pdf_document
+urlcolor: Tan
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installationshinweise
+
++ R muss vor RStudio installiert werden. 
+
+### Installation von R
+
++ R ist für Windows, Mac und Linux verfügbar unter: [cloud.r-project.org](https://cloud.r-project.org/). Wählen Sie Ihr Betriebssystem aus und folgen Sie den Installationshinweisen.
+
+### Installation von RStudio
+
++ Rstudio steht unter [rstudio.com/products/download](https://www.rstudio.com/products/rstudio/download/) zum Download bereit. Wählen Sie die kostenfreie Desktopversion aus und folgen Sie den Installationshinweisen.
+
+
+### Setup testen
+
++ R-Studio öffnen.
+
++ Im Kommando-Fenster (Console) (unten links) 1+2 eingeben.
+
++ Im Kommando-Fenster ?mean eingeben und mit Enter bestätigen. Es sollte sich das Hilfe-Fenster unten rechts öffnen.

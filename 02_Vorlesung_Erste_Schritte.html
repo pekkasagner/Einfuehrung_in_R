@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Datenanalyse und -visualisierung</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/clipboard/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="libs/shareon/shareon.min.js"></script>
+    <link href="libs/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="libs/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/default.css" type="text/css" />
+    <link rel="stylesheet" href="css/metropolis_changed.css" type="text/css" />
+    <link rel="stylesheet" href="css/metropolis-fonts_changed.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Datenanalyse und -visualisierung
+## mit der Programmiersprache R
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;
+  &lt;span&gt;&amp;emsp;
+  Pekka Sagner M.Sc.
+  &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+  &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+  &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+  Datenanalyse und -visualisierung&lt;/span&gt; 
+&lt;/div&gt;
+
+
+
+ 
+
+---
+#Datenanalyse und -visualisierung
+
+## mit der Programmiersprache R
+
+.split3070_left[
+
+### Pekka Sagner M.Sc.
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:black;overflow:visible;position:relative;"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg> sagner@iwkoeln.de](mailto:sagner@iwkoeln.de)&lt;br&gt;
+[<svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:black;overflow:visible;position:relative;"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg> iwkoeln.de/.../pekka-sagner](https://www.iwkoeln.de/institut/personen/pekka-sagner.html)&lt;br&gt;
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:black;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @pekkasagner](http://github.com/pekkasagner)
+
+Wintersemester 2021/22
+
+.font60[Letzte Aktualisierung:  18. Oktober 2021
+]
+
+]
+
+.split3070_right[
+&lt;br/&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+
+## Erste Schritte mit R und RStudio
+]
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 200px;
+height: 128px;
+z-index: 0;
+background-image: url(images/logo_print_studierende.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+
+---
+#Inhalte und Ziele der Sitzung
+
+
++ Verständnis der Grundfunktionen von R und RStudio
++ Erweiterte Einstellungen
++ Erstellung eines Projekts
++ Grundverständnis verschiedener Datentypen
+in R
+
+.center[
+&lt;img src="images/r-basics.png" width="450px"&gt;
+]
+
+.right[
+.font50[
+Quelle: [pickardpredictives.com](https://www.pickardpredictives.com/portfolio/3_r_basics/)
+]
+] 
+
++ Leseempfehlung: [An Introduction to R, Kapitel 1 &amp; 2 (Douglas et al., 2021)](https://intro2r.com/chap1.html)
+
+
+---
+class: clear, inverse, middle, center
+
+#Wieso, weshalb, warum?
+
+---
+#Was ist R überhaupt?
+
+.split3070_left[
+&lt;img src="images/Rlogo.svg" width="450px"&gt;
+]
+
+
+.split3070_right[
++ Die Antwort kommt stark darauf an, wen man fragt.
++ Grundsätzlich ist R eine **Umgebung für statistische Berechnungen, Grafiken und Programmierung**.
++ Erschaffen wurde das Programm von Ross Ihaka und Robert Gentleman (1996).
++ Betreut wird das Projekt vom *R Core Team*.
++ Darüber hinaus steuern viele weitere Entwickler Funktionalitäten bei.
++ Weitere Informationen unter [r-project.org](https://www.r-project.org/).
+]
+
+.center[
+&lt;img src="images/r-project.png" width="600px"&gt;
+]
+
+---
+#Warum R?
+
++ R ist **Open Source** und leicht zugänglich.
+
++ R steht für Windows, Mac und Linux zur Verfügung.
+
++ R bietet ein breites Spektrum an Funktionalitäten für statistische Analysen.
+
++ R bietet sehr flexible grafische Gestaltungsmöglichkeiten, mit denen sich
+**publikationsreife Abbildungen** erstellen lassen.
+
++ Die Funktionalitäten von R werden durch stetig (neu-)entwickelte **Pakete** erweitert.
+
++ R hat eine große (Online-)**Community**, zahlreiche Lernressourcen - sehr viele davon sind kostenfrei.
+
++ Diese und weitere Gründe machen R sowohl in der Wirtschaft als auch in der Forschung beliebt [(Muenchen, 2019)](http://r4stats.com/articles/popularity/).
+
+---
+class: clear, inverse, middle, center
+
+#Installation von R und RStudio
+
+---
+#R und RStudio
+
++ Im Kurs nutzen wir R und RStudio.
++ Unsere Berechnungen, Abbildungen und so weiter werden alle mit R erstellt. 
++ RStudio bietet eine komfortable Benutzeroberfläche, um Ergebnisse anzuzeigen und mit R zu arbeiten.
++ Die Arbeit mit R wird durch RStudio **deutlich benutzerfreundlicher** und dadurch nicht zuletzt auch einfacher.
+
+
+.center[
+&lt;img src="images/motor_cockpit.png" width="650px"&gt;
+]
+
+
+---
+#Installation von R und RStudio
+
++ Es muss **zuerst** R **und dann** RStudio installiert werden.
+
++ R ist für Windows, Mac und Linux verfügbar unter: [cloud.r-project.org](https://cloud.r-project.org/).
+
++ Rstudio steht unter [rstudio.com](https://www.rstudio.com/products/rstudio/download/) zum Download bereit. Für Privatanwender bietet sich die kostenfreie RStudio Desktop Version an.
+
++ Aus der Motor/Cockpit-Analogie folgt auch, dass wir nie die R-Anwendung direkt starten, sondern immer RStudio.
+
+.center[
+&lt;img src="images/open_r_rstudio.png" width="650px"&gt;
+]
+
+
+---
+class: clear, inverse, middle, center
+
+#Benutzeroberfläche von RStudio
+
+
+---
+#.font80[Orientierung auf der Benutzeroberfläche von RStudio]
+
+.panelset[
+  .panel[.panel-name[Console]
+&lt;img src="images/console.png" width="550px"/&gt;
+&lt;img src="images/console2.png" width="550px"/&gt;
++ In der Console evaluiert R den Code.
++ Man kann Code direkt in der Console schreiben und mit Enter ausführen.
+  ]
+  .panel[.panel-name[Skripte (Source Oberfläche)]
+&lt;img src="images/skript_source_pane.png" width="650px"/&gt;
+.font80[
++ Zum Speichern von Code wird dieser in R-Skripten geschrieben.
++ R-Skripte sind lediglich Textdateien mit einer **.R**-Dateiendung.
++ Ein neues R-Skript wird über die Menüleiste (**File** &amp;#8594; **New File** &amp;#8594; **R Script**) oder über den Tastatur-Shortcut **Strg + Umsch. + N** geöffnet.
++ Code wird über den Run-Button oder mit **Strg + Enter** ausgeführt.
+    ]
+  ]
+  .panel[.panel-name[Environment und Co.]
+&lt;img src="images/environment_co.png" width="650px"/&gt;
+  .font80[
++ Das Environment zeigt uns gespeicherte Objekte.
++ Die anderen Tabs zeigen weitere interessante Informationen, wie z.B. die Dateistruktur.
+    ]
+  ]
+  .panel[.panel-name[Plots und Viewer]
+&lt;img src="images/plots_viewer.png" width="650px"/&gt;
+  .font80[
++ Im Plot-Fenster werden Abbildungen angezeigt. 
++ Der Viewer kommt z.B. bei interaktiven Abbildungen zum Einsatz.
++ Das History-Fenster zeigt die Historie der ausgeführten Codezeilen.
+    ]
+  ]
+  ] 
+  
+---
+class: clear, inverse, middle, center
+
+#Arbeiten mit Skripten und Projekten
+
+---
+#Skripte und Projekte
+
++ Skripte sind einfache Textdateien, die unseren R-Code und Kommentare enthalten. Sie haben die Dateiendung **.R**.
+
++ Die Dokumentation der Datenanalyse in Skripten ist entscheidend für die Reproduzierbarkeit unserer Arbeit.
+
++ Für die Organisation der Datenanalyse bietet RStudio die Möglichkeit, **Projekte** zu erstellen. Diese haben die Dateiendung **.Rproj**.
+  
++ Jedes Analyseprojekt sollte in einem eigenen Projekt durchgeführt werden.
+
++ Wir werden später ein eigenes Projekt für die erste Übungsstunde anlegen.
+
++ Jeder Übungstermin, an dem wir mit R arbeiten wird mit einem eigenen R-Projekt assoziiert.
+
+---
+class: clear, inverse, middle, center
+
+#Mathematische Operatoren
+
+---
+#Mathematische Operatoren
+
++ Im Kern ist R ein (semi-)schicker Taschenrechner.
+
++ Alle klassischen Rechenoperationen sind möglich:
+
+&gt; `+` Addition
+
+&gt; `-` Subtraktion
+
+&gt; `*` Multiplikation
+
+&gt; `/` Division
+
+&gt; `^` Potenzen
+ 
++ Darüber hinaus stehen zahlreiche Hilfsfunktionen zur Verfügung, z.B.: `mean()`, `median()`, `min()`, `max()`, `sd()` für das arithmetische Mittel, den Median, das Minimum, das Maximum und die Standardabweichung.
+
+---
+#Mathematische Operatoren
+## Ein einfaches Beispiel:
+
++ Stellen wir uns vor, wir wollen aus dem BIP eines Landes und der Zahl der Einwohner das BIP pro Kopf berechnen.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; BIP &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Einwohner &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
++ Teilen des BIPs durch die Einwohnerzahl ergibt das gewünschte Ergebnis. In R schreiben wir:
+
+.center[
+.details[
+
+```r
+1000000 / 5000
+```
+
+```
+#&gt; [1] 200
+```
+]
+]
+  
+---
+#Mathematische Operatoren 
+## Ein einfaches Beispiel: 
+  
++ Mathematische Operatoren können natürlich beliebig gemischt werden:
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Land &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; BIP &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Einwohner &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FantasiAland &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FantasiBland &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2000000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6250 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
++ Der bevölkerungsgewichtete Durchschnitt des BIPs pro Kopf der beiden Länder liegt zum Beispiel bei:
+
+.center[
+.details[
+
+```r
+1000000 / 5000 * (5000 / (5000 + 6250)) + 2000000 / 6250 * (6250 / (5000 + 6250)) 
+```
+
+```
+#&gt; [1] 266.6667
+```
+]
+]
+
+---
+class: clear, inverse, middle, center
+
+#R Objekte
+
+---
+#R Objekte
+
++ Objekte lassen sich als gespeicherte Informationen interpretieren. Dies können einfache Zahlen sein, aber auch Abbildungen oder Tabellen.
+
++ Sobald ein Objekt gespeichert wurde, können wir es jederzeit wieder aufrufen.
+
+&gt; .font150[Everything in R is an **object**.] .font80[~ John M. Chambers, Entwickler von R]
+
++ Objekte werden mit dem *assignment operator* einem Namen zugewiesen.
+
++ Assignment operator:
+.center[.font200[.fontred[
+&lt;- ]]
+] 
+
++ Die Syntax ist dann also:
+.center[
+
+```r
+Name &lt;- Objekt 
+```
+]
+
+---
+#R Objekte
+##Ein einfaches Beispiel
+
++ Unser BIP pro Kopf Beispiel auf Basis von Objekten:
+
+.center[
+
+```r
+bip &lt;- 1000000
+einwohner &lt;- 5000
+```
+]
+
++ Schreibt man lediglich die jeweiligen Objektnamen in eine Zeile und führt diese aus, so wird das zugehörige Objekt angezeigt, in diesem Fall die beiden Zahlen:
+
+.center[
+.details[
+
+```r
+bip
+```
+
+```
+#&gt; [1] 1e+06
+```
+]
+]
+
+.center[
+.details[
+
+```r
+einwohner
+```
+
+```
+#&gt; [1] 5000
+```
+]
+]
+
+---
+#R Objekte
+##Ein einfaches Beispiel
+
++ Mit den Objekten kann dann gerechnet werden:
+
+.center[
+
+```r
+bip_pro_kopf &lt;- bip / einwohner
+```
+]
+
++ Das Ergebnis ist dann:
+
+.center[
+.details[
+
+```r
+bip_pro_kopf
+```
+
+```
+#&gt; [1] 200
+```
+]
+]
+ 
+---
+# Noch mehr Operatoren
+
++ Neben mathematischen Operatoren gibt es in R auch **logische Operatoren**.
+
++ Logische Operatoren werden für logische Tests genutzt.
+
++ Logische Operatoren können nur zwei Ergebnisse liefern: *wahr* oder *falsch*. 
+
++ Oder in der R-Syntax: `TRUE` oder `FALSE`.
+
+---
+class: clear, inverse, middle, center
+
+#Logische Operatoren
+
+---
+#Logische Operatoren
+
++ Zuerst erstellen wir einige weitere Objekte, um mit diesen logische Tests durchzuführen: 
+
+.center[
+
+```r
+FantasiAland &lt;- 1000000
+FantasiBland &lt;- 1100000
+FantasiCland &lt;- 1020000
+FantasiDland &lt;- 3100000
+FantasiEland &lt;- 1000000
+```
+]
+
++ Logische Tests sind Vergleiche:
+
+.font70[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Logischer Operator &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Bedeutung &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; == &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist gleich &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; != &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist nicht gleich &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist größer &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist kleiner &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;gt;= &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist größer oder gleich &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;lt;= &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ist kleiner oder gleich &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+#Logische Operatoren
+
++ `==` evaluiert, ob zwei Werte gleich sind. Dies müssen keine Zahlen sein. 
+
++ Der untenstehende Code testet folgende Beziehung: Das BIP in FantasiAland ist gleich groß wie in FantasiCland.
+
+.center[
+.details[
+
+```r
+FantasiAland == FantasiCland
+```
+
+```
+#&gt; [1] FALSE
+```
+]
+]
+
++ Da die beiden Werte nicht gleich sind, ist die Antwort `FALSE`.
+
++ Zur Erinnerung: Statt mit den Objekten zu rechnen, könnten wir auch einfach die Zahlenwerte verwenden:
+
+.center[
+.details[
+
+```r
+1000000 == 1020000
+```
+
+```
+#&gt; [1] FALSE
+```
+]
+]
+
+---
+#Logische Operatoren
+
++ `!=` evaluiert, ob zwei Werte nicht gleich sind.
+
++ Der nachfolgende Code testet folgende Beziehung: Das BIP in FantasiAland ist nicht gleich groß wie in FantasiCland.
+
+.center[
+.details[
+
+```r
+FantasiAland != FantasiCland
+```
+
+```
+#&gt; [1] TRUE
+```
+]
+]  
+
++ Da die beiden Werte nicht gleich sind, ist die Antwort `TRUE`.
+
+---
+#Logische Operatoren kombinieren
+
++ Logische Operatoren lassen sich mit `&amp;` und `|` beliebig untereinander kombinieren.
+
+
+.font90[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Logischer Operator &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Bedeutung &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; &amp;amp; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; und &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; | &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; oder &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
++ Falls uns interessiert ob **beide Aussagen** korrekt sind, nutzen wir `&amp;`.
+
++ Ob eine Kombination sinnhaftig ist, bleibt unsere Entscheidung.
+
++ Denn `1000000 &gt; 1020000 &amp; 1000000 &lt; 1020000` ist ein zulässiger logischer Test. Mit Objekten:
+
+.center[
+.details[
+
+```r
+FantasiAland &gt; FantasiCland &amp; FantasiAland &lt; FantasiCland
+```
+
+```
+#&gt; [1] FALSE
+```
+]
+]  
+
+---
+#Logische Operatoren kombinieren
+
++ Falls uns interessiert, ob **mindestens eine von beiden Aussagen** stimmt, schreiben wir:
+
+.center[
+.details[
+
+```r
+FantasiAland &gt; FantasiCland | FantasiAland &lt; FantasiCland
+```
+
+```
+#&gt; [1] TRUE
+```
+]
+]  
+
++ Auch die logischen Operatoren können beliebig häufig verkettet werden:
+
+.center[
+.details[
+
+```r
+(FantasiAland &gt; FantasiCland | FantasiAland &lt; FantasiCland) &amp; FantasiDland == FantasiEland
+```
+
+```
+#&gt; [1] FALSE
+```
+]
+]  
+
+---
+#Noch mehr Objekte
+
++ Bisher haben wir mathematische und logische Operatoren kennengelernt und erste Objekte erstellt.
+
++ Die Objekte bisher enthielten allerdings jeweils nur eine Zahl (Skalare).
+
++ R kann natürlich noch viel mehr.
+
++ Objekte können jegliche Art von Datentypen enthalten.
+
++ Wir schauen uns als Nächstes die häufigsten Daten**typen** in R an.
+
++ Auf dem Weg erstellen wir **Vektoren**, nach den Skalaren, die nächst komplexere Daten**struktur** in R.
+
+---
+class: clear, inverse, middle, center
+
+#Vektoren
+
+---
+#Vektoren
+
+.pull-left[
++ Vektoren sind Matrizen der Dimension `\(n\times1\)` (bedeutet `\(n\)` Zeilen und `\(1\)` Spalte).
+
++ Um in R einen Vektor zu erstellen, nutzen wir die Funktion `c()` (steht für *concatenate* [verketten]).
+
++ Beispiel mit Zahlen:
+
+.details[
+
+```r
+c(1, 100, 1000, 10000)
+```
+
+```
+#&gt; [1]     1   100  1000 10000
+```
+]
+
++ Beispiel mit Text:
+
+
+.details[
+
+```r
+c("Hallo", "ich", "bin", "ein", "Text")
+```
+
+```
+#&gt; [1] "Hallo" "ich"   "bin"   "ein"   "Text"
+```
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="images/scalar_vector.png" width="250px"&gt;
+]
+]
+
+---
+#Vektoren
+
++ Wir können unsere zuvor erstellten BIPs, die wir einzelnen Objekten zugewiesen haben, verbinden.
+
+.center[
+
+```r
+alle_bips &lt;- c(FantasiAland, FantasiBland, FantasiCland, 
+               FantasiDland, FantasiEland)
+```
+]
+
++ Es entsteht ein Vektor, der die BIPs der fünf Länder enthält:
+
+.center[
+.details[
+
+```r
+alle_bips
+```
+
+```
+#&gt; [1] 1000000 1100000 1020000 3100000 1000000
+```
+]
+]
+
+---
+#Vektoren
+
++ Mit Vektoren kann man rechnen:
+
+.center[
+.details[
+
+```r
+alle_bips / 5000
+```
+
+```
+#&gt; [1] 200 220 204 620 200
+```
+]
+]
+
++ Und wir können logische Tests durchführen:
+
+.center[
+.details[
+
+```r
+alle_bips == FantasiAland
+```
+
+```
+#&gt; [1]  TRUE FALSE FALSE FALSE  TRUE
+```
+]
+]
+
++ Zur Erinnerung: Die vergebenen Namen für die Objekte sind für logische Tests irrelevant. Es kommt darauf an, welche Inhalte hinter den jeweiligen Namen stecken.
+
+
+---
+#Datentypen
+
++ Datenstrukturen können verschiedene Datentypen enthalten.
+
++ Zu den relevantesten Datentypen in R gehören die folgenden:
+
+.font90[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Datentyp &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Beispiel &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Hinweis &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; double &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.1, 7.9, 10.3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; numeric &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; integer &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1, 2, 3, 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; numeric &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; logical &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; TRUE oder FALSE &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; character &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hallo, ich bin, ein text &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; strings/text &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; factor &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; divers, frau, mann &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; numeric/character/logical &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+#Datentypen
+
+.font80[
++ Beispielvektoren:
+
+.center[
+
+```r
+vect_double &lt;- c(3.1, 7.9, 10.3)
+vect_integer &lt;- c(1L, 2L, 3L)
+vect_logical &lt;- c(TRUE, FALSE, TRUE, TRUE)
+vect_character &lt;- c("strings", "text", "character")
+vector_factor &lt;- factor(c("divers, frau, mann"))
+```
+]
+
++ Wir können die Datentypen mit der Funktion `typeof()` überprüfen, z. B.:
+
+.center[
+.details[
+
+```r
+typeof(vect_double)
+```
+
+```
+#&gt; [1] "double"
+```
+]
+]
+
++ Oder:
+
+.center[
+.details[
+
+```r
+typeof(vect_character)
+```
+
+```
+#&gt; [1] "character"
+```
+]
+]
+
+]
+---
+#Datentypen 
+
++ Es kommt gelegentlich vor, dass wir einen Datentyp erzwingen wollen.
+
++ Das ist z. B. hilfreich, wenn beim Einlesen der Daten, der Datentyp nicht korrekt erkannt wurde.
+
++ Wir nutzen hierfür die `as. ...()`-Funktionen.
+
+&gt; `as.numeric()`
+
+&gt; `as.character()`
+
+&gt; `as.factor()`
+
+&gt; ...
+
+---
+#Datentypen 
+
++ Insbesondere die Funktion `as.factor()` nutzen wir häufiger.
+
++ Faktoren sind eigentlich eine Daten**klasse** und kein Daten**typ**. Die Funktion `as.factor()` wandelt verschiedene Datentypen um. Sie werden dadurch zum Typ `integer` aber zur Klasse `factor`.
+
+.font70[
++ Ausgangspunkt:
+.center[
+.details[
+
+```r
+typeof(vect_character)
+```
+
+```
+#&gt; [1] "character"
+```
+]
+]
+
++ Datentyp:
+.center[
+.details[
+
+```r
+vect_character_to_vector &lt;- as.factor(vect_character)
+typeof(vect_character_to_vector)
+```
+
+```
+#&gt; [1] "integer"
+```
+]
+]
++ Datenklasse:
+.center[
+.details[
+
+```r
+class(vect_character_to_vector)
+```
+
+```
+#&gt; [1] "factor"
+```
+]
+]
+
+]
+
+---
+#Datentypen
+
++ Braucht man das wirklich?
+
++ Ja.
+
++ Sind Datentypen kompliziert? 
+
++ Nein.
+
++ Die gute Nachricht: **Oft funktioniert es einfach wie es soll.**
+
++ Im Moment stehen diese noch im leeren Raum. Bei der Arbeit mit Datensätzen und Visualisierungen wird uns klarer, welche Funktionsweisen welcher Datentyp bedingt.
+
+---
+class: clear, inverse, middle, center
+
+#Genug der Theorie. Ab nach &lt;img src="images/rstudio.svg" width="250px"&gt;.  
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%<br>",
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script>
+(function() {
+  var divHTML = document.querySelectorAll(".details");
+  divHTML.forEach(function (el) {
+    var preNodes = el.getElementsByTagName("pre");
+    if (preNodes.length < 2) return;
+    var outputNode = preNodes[1];
+    outputNode.outerHTML = "<details " +
+      (el.classList.contains("open") ? "open " : "") +
+      "class='output'><summary>Ergebnis anzeigen</summary>" +
+      outputNode.outerHTML + "</details>";
+  })
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
